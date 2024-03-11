@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .image-container {
+      overflow: hidden;
+      position: relative;
+      width: 80%;
+      height: 80%;
+    }
+
+    .image-container div {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: lightgray;
+      font-size: 24px;
+    }
+
+    .image-container div.active {
+      display: flex;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .prev {
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container">
+    <button class="arrow prev">&lt;</button>
+    <div class="image-container">
+      <div class="active">사진1</div>
+      <div>사진2</div>
+      <div>사진3</div>
+    </div>
+    <button class="arrow next">&gt;</button>
+  </div>
+  <script>
+    const imageContainer = document.querySelector('.image-container');
+    const images = document.querySelectorAll('.image-container div');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    let currentIndex = 0;
+
+    nextButton.addEventListener('click', () => {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    });
+
+    prevButton.addEventListener('click', () => {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      images[currentIndex].classList.add('active');
+    });
+  </script>
+</body>
+</html>
