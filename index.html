@@ -77,6 +77,7 @@
     const images = document.querySelectorAll('.image-container div');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
+    var timerInterval 
 
     let currentIndex = 0;
 
@@ -91,6 +92,16 @@
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       images[currentIndex].classList.add('active');
     });
+    function run (){
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    };
+    function interval (){
+      timerInterval = setInterval(run, 2000); 
+    }
+
+    interval();
   </script>
 </body>
 </html>
